@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".SettingActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/settings_image"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/default_avatar" />
+
+    <TextView
+        android:id="@+id/settings_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dispaly Name"
+        android:layout_below="@id/settings_image"
+        />
+
+    <TextView
+        android:id="@+id/settings_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi ! I'm using LetUsChat."
+        android:layout_below="@id/settings_name"
+        />
+
+    <Button
+        android:id="@+id/setting_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Image"
+        android:layout_below="@id/settings_status"
+        />
+
+    <Button
+        android:id="@+id/setting_status_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Status"
+        android:layout_below="@id/setting_image_btn"
+        />
+
+</RelativeLayout>
