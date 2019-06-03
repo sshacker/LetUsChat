@@ -1,6 +1,7 @@
 package com.luciferhacker.letuschat;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -65,8 +66,13 @@ public class StatusActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             mProgress.dismiss();
+                            Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
+                            Intent settingIntent = new Intent(StatusActivity.this, SettingActivity.class);
+                            startActivity(settingIntent);
+                            finish();
                         }else {
                             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                            mProgress.dismiss();
                         }
                     }
                 });

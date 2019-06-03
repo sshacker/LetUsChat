@@ -17,9 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UserActivity extends AppCompatActivity {
 
     private Toolbar mToolBar;
-
     private RecyclerView mUserList;
-
     private DatabaseReference mUsersDatabase;
 
     @Override
@@ -53,6 +51,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(UsersViewHolder usersviewHolder, Users users, int i) {
                 usersviewHolder.setName(users.getName());
+                usersviewHolder.setStatus(users.getStatus());
 
             }
         };
@@ -71,6 +70,11 @@ public class UserActivity extends AppCompatActivity {
         public void setName(String name) {
             TextView userNameView = (TextView) mView.findViewById(R.id.single_user_name);
             userNameView.setText(name);
+        }
+
+        public void setStatus(String status) {
+            TextView userStatusView = (TextView) mView.findViewById(R.id.single_user_status);
+            userStatusView.setText(status);
         }
     }
 }
