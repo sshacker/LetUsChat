@@ -1,5 +1,7 @@
 package com.luciferhacker.letuschat;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,9 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UserActivity extends AppCompatActivity {
@@ -49,9 +54,21 @@ public class UserActivity extends AppCompatActivity {
                 mUsersDatabase
         ) {
             @Override
-            protected void populateViewHolder(UsersViewHolder usersviewHolder, Users users, int i) {
-                usersviewHolder.setName(users.getName());
-                usersviewHolder.setStatus(users.getStatus());
+            protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int position) {
+                usersViewHolder.setDisplayName(users.getName());
+                usersViewHolder.setUserStatus(users.getStatus());
+                usersViewHolder.setUserImage(users.getThumbImage());
+
+                final String user_id = getRef(position).getKey();
+
+                usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent profileIntent =new Intent(UserActivity.this, ProfileActivity.class);
+                        profileIntent.putExtra("user_id",user_id);
+                        startActivity(profileIntent);
+                    }
+                });
 
             }
         };
@@ -67,14 +84,20 @@ public class UserActivity extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setName(String name) {
-            TextView userNameView = (TextView) mView.findViewById(R.id.single_user_name);
+        public void setDisplayName(String name) {
+            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_name);
             userNameView.setText(name);
         }
 
-        public void setStatus(String status) {
-            TextView userStatusView = (TextView) mView.findViewById(R.id.single_user_status);
+        public void setUserStatus(String status) {
+            TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_status);
             userStatusView.setText(status);
+        }
+
+        public void setUserImage(String thumb_image) {
+            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_image);
+            Picasso.get().load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
+
         }
     }
 }
