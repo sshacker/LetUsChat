@@ -55,7 +55,7 @@
         android:id="@+id/profile_decline_friend_req_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DECLINE FROEND REQUEST"
+        android:text="DECLINE FRIEND REQUEST"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/profile_send_req_btn"
         />
