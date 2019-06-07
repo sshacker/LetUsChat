@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageView mProfileImage;
@@ -30,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private DatabaseReference mUsersDatabase;
     private DatabaseReference mFriendReqDatabase;
+    private DatabaseReference mFriendDatabase;
     private FirebaseUser mCurrent_user;
     private ProgressDialog mProgressDialog;
     private String mCurrent_state;
@@ -51,6 +56,8 @@ public class ProfileActivity extends AppCompatActivity {
         final String user_id = getIntent().getStringExtra("user_id");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(user_id);
         mFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
+        mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
 
         mProgressDialog = new ProgressDialog(ProfileActivity.this);
@@ -126,7 +133,6 @@ public class ProfileActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
 
-                                        mProfileSendReqBtn.setEnabled(true);
                                         mCurrent_state = "req_sent";
                                         mProfileSendReqBtn.setText("Cancel Friend Request");
 
@@ -137,6 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(ProfileActivity.this, "Failed Sending Request",Toast.LENGTH_LONG).show();
                             }
+                            mProfileSendReqBtn.setEnabled(true);
 
                         }
                     });
@@ -159,6 +166,42 @@ public class ProfileActivity extends AppCompatActivity {
                             });
                         }
                     });
+                }
+
+
+                // Request Receive State
+
+                if(mCurrent_state.equals("req_received")){
+                    final String currentDateandTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+                    mFriendDatabase.child(mCurrent_user.getUid()).child(user_id).setValue(currentDateandTime).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            mFriendDatabase.child(user_id).child(mCurrent_user.getUid()).setValue(currentDateandTime).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    mFriendReqDatabase.child(mCurrent_user.getUid()).child(user_id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+
+                                            mFriendReqDatabase.child(user_id).child(mCurrent_user.getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    mProfileSendReqBtn.setEnabled(true);
+                                                    mCurrent_state = "friends";
+                                                    mProfileSendReqBtn.setText("Unfriend");
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+
+                    Toast.makeText(getApplicationContext(), currentDateandTime, Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
