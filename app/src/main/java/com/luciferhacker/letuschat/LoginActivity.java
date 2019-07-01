@@ -3,6 +3,8 @@ package com.luciferhacker.letuschat;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout mLoginPassword;
     private Button mLoginButton;
     private FirebaseAuth mAuth;
+    private DatabaseReference mUserDatabase;
 
 
     @Override
@@ -45,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         mloginProgress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("User");
 
         mLoginEmai = (TextInputLayout)findViewById(R.id.login_email);
         mLoginPassword = (TextInputLayout)findViewById(R.id.login_password);
@@ -75,10 +82,21 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             mloginProgress.dismiss();
-                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(mainIntent);
-                            finish();
+
+                            String current_user_id = mAuth.getCurrentUser().getUid();
+                            String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+                            mUserDatabase.child(current_user_id).child("device_token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(mainIntent);
+                                    finish();
+
+                                }
+                            });
 
                         }
                         else
