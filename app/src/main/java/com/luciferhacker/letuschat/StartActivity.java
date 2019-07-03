@@ -8,17 +8,18 @@ import android.widget.Button;
 
 public class StartActivity extends AppCompatActivity {
 
-    private Button mRegBtn;
-    private Button mLoginBtn;
+    private Button mRegisterNewAccountButton;
+    private Button mLoginAccountButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        mRegBtn = (Button)findViewById(R.id.start_reg_btn);
-        mLoginBtn = (Button)findViewById(R.id.start_login_btn);
+        mRegisterNewAccountButton = (Button)findViewById(R.id.start_reg_btn);
+        mLoginAccountButton = (Button)findViewById(R.id.start_login_btn);
 
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+        mLoginAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginIntent = new Intent(StartActivity.this, LoginActivity.class);
@@ -26,11 +27,11 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        mRegBtn.setOnClickListener(new View.OnClickListener() {
+        mRegisterNewAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent regIntent = new Intent(StartActivity.this, RegisterActivity.class);
-                startActivity(regIntent);
+                Intent registerIntent = new Intent(StartActivity.this, RegisterActivity.class);
+                startActivity(registerIntent);
             }
         });
     }

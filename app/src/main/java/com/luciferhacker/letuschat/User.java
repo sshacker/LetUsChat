@@ -1,22 +1,21 @@
 package com.luciferhacker.letuschat;
 
-public class Users {
+public class User {
 
     public String name;
     public String image;
     public String status;
-    public String thumb_image;
+    public String thumbImage;
 
-    public Users () {
+    public User() {
 
     }
 
-    public Users(String name, String image, String status, String thumb_image) {
+    public User(String name, String image, String status, String thumbImage) {
         this.name = name;
         this.image = image;
         this.status = status;
-        this.thumb_image = thumb_image;
-
+        this.thumbImage = thumbImage;
     }
 
     public void setName(String name) {
@@ -43,11 +42,11 @@ public class Users {
         return status;
     }
 
-    public void setThumbImage(String thumb_image) {
-        this.thumb_image = thumb_image;
+    public void setThumbImage(String thumbImage) {
+        this.thumbImage = thumbImage;
     }
 
     public String getThumbImage() {
-        return thumb_image;
+        return thumbImage;
     }
 }

@@ -14,33 +14,27 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
 
-    // Declare an instance of FirebaseAuth.
-    private FirebaseAuth mAuth;
-
-    private Toolbar mToolbar;
+    private Toolbar mMainToolbar;
     private TabLayout mTabLayout;
-
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    // In the onCreate() method, initialize the FirebaseAuth instance.
         mAuth = FirebaseAuth.getInstance();
-
-        // Toolbar (app_bar)
-        mToolbar = (Toolbar)findViewById(R.id.main_page_toolbar);
-        setSupportActionBar(mToolbar);
+        mMainToolbar = (Toolbar)findViewById(R.id.main_page_toolbar);
+        setSupportActionBar(mMainToolbar);
         getSupportActionBar().setTitle("LetUsChat");
 
-        mViewPager = (ViewPager)findViewById(R.id.main_tabpager);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager)findViewById(R.id.main_tabpager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mTabLayout = (TabLayout)findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
-
     }
 
     // When initializing your Activity, check to see if the user is currently signed in.
@@ -63,13 +57,10 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
         finish();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
         return true;
     }
 
@@ -82,12 +73,12 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
             sendToStart();
         }
         if(item.getItemId() == R.id.main_setting_btn){
-            Intent settingsIntent = new Intent(MainActivity.this,SettingActivity.class);
-            startActivity(settingsIntent);
+            Intent settingIntent = new Intent(MainActivity.this,SettingActivity.class);
+            startActivity(settingIntent);
         }
         if(item.getItemId() == R.id.main_all_btn){
-            Intent alluserIntent = new Intent(MainActivity.this,UserActivity.class);
-            startActivity(alluserIntent);
+            Intent userIntent = new Intent(MainActivity.this, AllUsersActivity.class);
+            startActivity(userIntent);
         }
         return true;
     }

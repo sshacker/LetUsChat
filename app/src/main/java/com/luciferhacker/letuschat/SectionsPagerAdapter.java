@@ -21,8 +21,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 RequestsFragment requestsFragment = new RequestsFragment();
                 return requestsFragment;
             case 1:
-                ChatFragment chatFragment = new ChatFragment();
-                return chatFragment;
+                ChatsFragment chatsFragment = new ChatsFragment();
+                return chatsFragment;
             case 2:
                 FriendsFragment friendsFragment = new FriendsFragment();
                 return  friendsFragment;
