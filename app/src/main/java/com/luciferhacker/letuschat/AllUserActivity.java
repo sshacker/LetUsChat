@@ -1,12 +1,16 @@
 package com.luciferhacker.letuschat;
 
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,30 +21,27 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+public class AllUserActivity extends AppCompatActivity implements MyStringsConstant {
 
-public class AllUsersActivity extends AppCompatActivity implements MyStringsConstant {
-
-    private Toolbar mAllUsersToolbar;
-    private RecyclerView mAllUsersRecyclerViewList;
-    private DatabaseReference mUsersDatabase;
+    private Toolbar mAllUserToolbar;
+    private RecyclerView mAllUserRecyclerViewList;
+    private DatabaseReference mUserDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_user);
 
-
-        mAllUsersToolbar = (Toolbar) findViewById(R.id.user_appBar);
-        setSupportActionBar(mAllUsersToolbar);
-        getSupportActionBar().setTitle("All User");
+        mAllUserToolbar = (Toolbar) findViewById(R.id.user_appBar);
+        setSupportActionBar(mAllUserToolbar);
+        getSupportActionBar().setTitle(strAll_User);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
 
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
-
-        mAllUsersRecyclerViewList = (RecyclerView) findViewById(R.id.user_list);
-        mAllUsersRecyclerViewList.setHasFixedSize(true);
-        mAllUsersRecyclerViewList.setLayoutManager(new LinearLayoutManager(this));
+        mAllUserRecyclerViewList = (RecyclerView) findViewById(R.id.user_list);
+        mAllUserRecyclerViewList.setHasFixedSize(true);
+        mAllUserRecyclerViewList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     protected void onStart() {
@@ -50,7 +51,7 @@ public class AllUsersActivity extends AppCompatActivity implements MyStringsCons
                 User.class,
                 R.layout.users_single_layout,
                 UsersViewHolder.class,
-                mUsersDatabase
+                mUserDatabase
         ) {
             @Override
             protected void populateViewHolder(UsersViewHolder usersViewHolder, User users, int position) {
@@ -63,7 +64,7 @@ public class AllUsersActivity extends AppCompatActivity implements MyStringsCons
                 usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent profileIntent =new Intent(AllUsersActivity.this, ProfileActivity.class);
+                        Intent profileIntent = new Intent(AllUserActivity.this, ProfileActivity.class);
                         profileIntent.putExtra(strUSER_ID, userId);
                         startActivity(profileIntent);
                     }
@@ -71,7 +72,7 @@ public class AllUsersActivity extends AppCompatActivity implements MyStringsCons
 
             }
         };
-        mAllUsersRecyclerViewList.setAdapter(firebaseRecyclerAdapter);
+        mAllUserRecyclerViewList.setAdapter(firebaseRecyclerAdapter);
     }
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {

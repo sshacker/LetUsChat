@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentPagerAdapter implements MyStringsConstant {
 
 
     public SectionsPagerAdapter(FragmentManager fm) {
@@ -15,8 +15,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int positions) {
-        switch(positions)
-        {
+        switch (positions) {
             case 0:
                 RequestsFragment requestsFragment = new RequestsFragment();
                 return requestsFragment;
@@ -25,8 +24,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return chatsFragment;
             case 2:
                 FriendsFragment friendsFragment = new FriendsFragment();
-                return  friendsFragment;
-            default :
+                return friendsFragment;
+            default:
                 return null;
         }
 
@@ -40,14 +39,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position)
-        {
+        switch (position) {
             case 0:
-                return "REQUESTS";
+                return strREQUESTS;
             case 1:
-                return "CHATS";
+                return strCHATS;
             case 2:
-                return "FRIENDS";
+                return strFRIENDS;
             default:
                 return null;
         }

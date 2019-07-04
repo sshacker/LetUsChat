@@ -43,7 +43,7 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
 
-public class SettingActivity extends AppCompatActivity implements MyStringsConstant{
+public class SettingActivity extends AppCompatActivity implements MyStringsConstant {
 
     private Toolbar mSettingToolbar;
     private CircleImageView mDisplayImage;
@@ -62,7 +62,7 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
 
         mSettingToolbar = (Toolbar) findViewById(R.id.setting_appbar);
         setSupportActionBar(mSettingToolbar);
-        getSupportActionBar().setTitle("Account Settings");
+        getSupportActionBar().setTitle(strAccount_Settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
@@ -82,9 +82,9 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
         mUsersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                
+
                 if (dataSnapshot.exists()) {
-                    
+
                     String name = dataSnapshot.child(strName).getValue(String.class);
                     final String image = dataSnapshot.child(strIMAGE).getValue(String.class);
                     String status = dataSnapshot.child(strSTATUS).getValue(String.class);
@@ -97,7 +97,7 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
                         Picasso.get().load(image).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_avatar).into(mDisplayImage, new Callback() {
                             @Override
                             public void onSuccess() {
-                                
+
                             }
 
                             @Override
@@ -144,9 +144,9 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            
+
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            
+
             if (resultCode == RESULT_OK) {
 
                 mSettingProgressDialog = new ProgressDialog(SettingActivity.this);
@@ -212,7 +212,7 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
 
                                                                 }
                                                             });
-                                                            
+
                                                         } else {
                                                             mSettingProgressDialog.dismiss();
                                                             Toast.makeText(SettingActivity.this, "Thumb downloadUrl failed", Toast.LENGTH_LONG).show();
@@ -239,7 +239,7 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
-                Toast.makeText(SettingActivity.this, "Crop Image Activity failed"+error, Toast.LENGTH_LONG).show();
+                Toast.makeText(SettingActivity.this, "Crop Image Activity failed" + error, Toast.LENGTH_LONG).show();
             }
 
         }

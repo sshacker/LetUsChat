@@ -28,7 +28,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
-public class RegisterActivity extends AppCompatActivity implements MyStringsConstant{
+public class RegisterActivity extends AppCompatActivity implements MyStringsConstant {
 
     private TextInputLayout mDisplayName;
     private TextInputLayout mEmail;
@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements MyStringsCons
 
         mRegisterToolbar = (Toolbar) findViewById(R.id.register_tool_bar);
         setSupportActionBar(mRegisterToolbar);
-        getSupportActionBar().setTitle("Create An Account");
+        getSupportActionBar().setTitle(strRegister);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mRegisterProgressDialog = new ProgressDialog(this);

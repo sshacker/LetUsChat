@@ -1,7 +1,9 @@
 package com.luciferhacker.letuschat;
 
 import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +18,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        mRegisterNewAccountButton = (Button)findViewById(R.id.start_reg_btn);
-        mLoginAccountButton = (Button)findViewById(R.id.start_login_btn);
+        mRegisterNewAccountButton = (Button) findViewById(R.id.start_reg_btn);
+        mLoginAccountButton = (Button) findViewById(R.id.start_login_btn);
 
         mLoginAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override

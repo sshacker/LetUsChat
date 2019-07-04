@@ -1,6 +1,7 @@
 package com.luciferhacker.letuschat;
 
 import android.app.Application;
+
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;

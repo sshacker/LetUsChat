@@ -1,18 +1,23 @@
 package com.luciferhacker.letuschat;
 
 import android.content.Intent;
+
 import com.google.android.material.tabs.TabLayout;
+
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
+public class MainActivity<sectionsPageAdapter> extends AppCompatActivity implements MyStringsConstant {
 
     private Toolbar mMainToolbar;
     private TabLayout mTabLayout;
@@ -26,14 +31,14 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-        mMainToolbar = (Toolbar)findViewById(R.id.main_page_toolbar);
+        mMainToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mMainToolbar);
-        getSupportActionBar().setTitle("LetUsChat");
+        getSupportActionBar().setTitle(strLetUsChat);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager)findViewById(R.id.main_tabpager);
+        mViewPager = (ViewPager) findViewById(R.id.main_tabpager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mTabLayout = (TabLayout)findViewById(R.id.main_tabs);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -46,7 +51,7 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
         //updateUI(currentUser);
 
         // If user no login re-direct to StartActivity
-        if(currentUser == null){
+        if (currentUser == null) {
             sendToStart();
         }
     }
@@ -68,16 +73,16 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if(item.getItemId() == R.id.main_logout_btn){
+        if (item.getItemId() == R.id.main_logout_btn) {
             FirebaseAuth.getInstance().signOut();
             sendToStart();
         }
-        if(item.getItemId() == R.id.main_setting_btn){
-            Intent settingIntent = new Intent(MainActivity.this,SettingActivity.class);
+        if (item.getItemId() == R.id.main_setting_btn) {
+            Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(settingIntent);
         }
-        if(item.getItemId() == R.id.main_all_btn){
-            Intent userIntent = new Intent(MainActivity.this, AllUsersActivity.class);
+        if (item.getItemId() == R.id.main_all_btn) {
+            Intent userIntent = new Intent(MainActivity.this, AllUserActivity.class);
             startActivity(userIntent);
         }
         return true;

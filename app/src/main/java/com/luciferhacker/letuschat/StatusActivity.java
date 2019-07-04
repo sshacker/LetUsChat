@@ -2,11 +2,17 @@ package com.luciferhacker.letuschat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.textfield.TextInputLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,15 +43,15 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
 
         mStatusDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUserId);
 
-        mStatusToolbar = (Toolbar)findViewById(R.id.status_appBar);
+        mStatusToolbar = (Toolbar) findViewById(R.id.status_appBar);
         setSupportActionBar(mStatusToolbar);
-        getSupportActionBar().setTitle("Account Status");
+        getSupportActionBar().setTitle(strAccount_Status);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String statusValue = getIntent().getStringExtra(strSTATUS_VALUE);
 
-        mStatus = (TextInputLayout)findViewById(R.id.status_input);
-        mSaveStatusButton = (Button)findViewById(R.id.status_save_btn);
+        mStatus = (TextInputLayout) findViewById(R.id.status_input);
+        mSaveStatusButton = (Button) findViewById(R.id.status_save_btn);
 
         mStatus.getEditText().setText(statusValue);
 
@@ -62,14 +68,14 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
                 mStatusDatabase.child(strSTATUS).setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             mStatusProgressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
 
                             Intent settingIntent = new Intent(StatusActivity.this, SettingActivity.class);
                             startActivity(settingIntent);
                             finish();
-                        }else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
                             mStatusProgressDialog.dismiss();
                         }
