@@ -58,4 +58,9 @@ public interface MyStringsConstant {
     String strFROM = "from";
     String strTYPE = "type";
     String strDATE = "date";
+
+    // ONLINE STATUS
+    String strONLINE_STATUS = "online_status";
+    String strONLINE = "online";
+    String strOFFLINE = "offline";
 }

@@ -2,16 +2,26 @@ package com.luciferhacker.letuschat;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
-public class LetUsChat extends Application {
+public class LetUsChat extends Application implements MyStringsConstant{
+
+    private DatabaseReference mUsersDatabase;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         // Picasso offline Capabilities
@@ -20,5 +30,32 @@ public class LetUsChat extends Application {
         Picasso built = builder.build();
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+
+            mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(mAuth.getCurrentUser().getUid());
+
+            mUsersDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot != null) {
+
+                        /* ONLINE AND OFFLINE APP RUNNING STATUS */
+                        mUsersDatabase.child(strONLINE).setValue(true);
+                        mUsersDatabase.child(strONLINE).onDisconnect().setValue(false);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
     }
 }

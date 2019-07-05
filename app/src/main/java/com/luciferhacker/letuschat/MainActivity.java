@@ -16,6 +16,8 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity<sectionsPageAdapter> extends AppCompatActivity implements MyStringsConstant {
 
@@ -24,6 +26,7 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private FirebaseAuth mAuth;
+    private DatabaseReference mUserReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,13 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if( currentUser != null ){
+
+            mUserReference = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUser.getUid());
+        }
+
         mMainToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mMainToolbar);
         getSupportActionBar().setTitle(strLetUsChat);
@@ -46,14 +56,25 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
+        // updateUI(currentUser);
 
         // If user no login re-direct to StartActivity
         if (currentUser == null) {
             sendToStart();
+
+        } else {
+            /* ONLINE USER */
+            //mUserReference.child(strONLINE).setValue(true);
         }
+    }
+
+    protected void onStop(){
+        super.onStop();
+
+        /* OFFLINE USER */
+        // mUserReference.child(strONLINE).setValue(false);
     }
 
     private void sendToStart() {

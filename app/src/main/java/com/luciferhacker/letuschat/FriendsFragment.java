@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -87,6 +88,11 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
 
                         friendsViewHolder.setName(userName);
                         friendsViewHolder.setUserImage(userThumb,getContext());
+
+                        if(dataSnapshot.hasChild(strONLINE)){
+                            Boolean userOnline = (Boolean) dataSnapshot.child(strONLINE).getValue();
+                            friendsViewHolder.setUserOnlineStatus(userOnline);
+                        }
                     }
 
                     @Override
@@ -110,8 +116,8 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
         }
 
         public void setDate(String date){
-            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_status);
-            userNameView.setText(date);
+            TextView userDateView = (TextView) mView.findViewById(R.id.user_single_status);
+            userDateView.setText(date);
         }
 
         public void setName(String name){
@@ -122,6 +128,15 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
         public void setUserImage(String thumb, Context ctx){
             CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_image);
             Picasso.get().load(thumb).placeholder(R.drawable.default_avatar).into(userImageView);
+        }
+
+        public void setUserOnlineStatus (Boolean onlineStatus){
+            ImageView userOnlineView = (ImageView) mView.findViewById(R.id.user_single_online_icon);
+            if(onlineStatus == true){
+                userOnlineView.setVisibility(View.VISIBLE);
+            } else {
+                userOnlineView.setVisibility(View.INVISIBLE);
+            }
         }
     }
 
