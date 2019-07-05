@@ -13,9 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,12 +48,12 @@ public class ProfileActivity extends AppCompatActivity implements MyStringsConst
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        mProfileImage = (ImageView) findViewById(R.id.profile_image);
-        mProfileName = (TextView) findViewById(R.id.profile_displayName);
-        mProfileStatus = (TextView) findViewById(R.id.profile_status);
-        mProfileFriendsCount = (TextView) findViewById(R.id.profile_totalFriends);
-        mProfileSendRequestButton = (Button) findViewById(R.id.profile_send_req_btn);
-        mProfileDeclineRequestButton = (Button) findViewById(R.id.profile_decline_friend_req_btn);
+        mProfileImage = (ImageView) findViewById(R.id.profile_profile_image);
+        mProfileName = (TextView) findViewById(R.id.profile_profile_display_name_text);
+        mProfileStatus = (TextView) findViewById(R.id.profile_status_text);
+        mProfileFriendsCount = (TextView) findViewById(R.id.profile_total_friends_text);
+        mProfileSendRequestButton = (Button) findViewById(R.id.profile_send_friend_request_button);
+        mProfileDeclineRequestButton = (Button) findViewById(R.id.profile_decline_friend_request_button);
 
         mProfileDeclineRequestButton.setVisibility(View.INVISIBLE);
         mProfileDeclineRequestButton.setEnabled(false);

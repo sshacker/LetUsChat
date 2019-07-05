@@ -43,15 +43,15 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
 
         mStatusDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUserId);
 
-        mStatusToolbar = (Toolbar) findViewById(R.id.status_appBar);
+        mStatusToolbar = (Toolbar) findViewById(R.id.status_appbar_toolbar);
         setSupportActionBar(mStatusToolbar);
         getSupportActionBar().setTitle(strAccount_Status);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String statusValue = getIntent().getStringExtra(strSTATUS_VALUE);
 
-        mStatus = (TextInputLayout) findViewById(R.id.status_input);
-        mSaveStatusButton = (Button) findViewById(R.id.status_save_btn);
+        mStatus = (TextInputLayout) findViewById(R.id.status_text_input_layout);
+        mSaveStatusButton = (Button) findViewById(R.id.status_save_button);
 
         mStatus.getEditText().setText(statusValue);
 

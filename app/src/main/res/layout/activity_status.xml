@@ -8,16 +8,16 @@
     tools:context=".StatusActivity">
 
     <include
-        android:id="@+id/status_appBar"
-        layout="@layout/app_bar_layout"
+        android:id="@+id/status_appbar_toolbar"
+        layout="@layout/appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/status_input"
+        android:id="@+id/status_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/status_appBar">
+        android:layout_below="@id/status_appbar_toolbar">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -26,11 +26,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/status_save_btn"
+        android:id="@+id/status_save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Changes"
-        android:layout_below="@+id/status_input"
+        android:layout_below="@+id/status_text_input_layout"
         />
 
 </RelativeLayout>

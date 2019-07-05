@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements MyStringsConstan
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mLoginToolbar = (Toolbar) findViewById(R.id.login_tool_bar);
+        mLoginToolbar = (Toolbar) findViewById(R.id.login_appbar_toolbar);
         setSupportActionBar(mLoginToolbar);
         getSupportActionBar().setTitle(strLogin);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -54,9 +54,9 @@ public class LoginActivity extends AppCompatActivity implements MyStringsConstan
         mAuth = FirebaseAuth.getInstance();
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
 
-        mLoginEmail = (TextInputLayout) findViewById(R.id.login_email);
-        mLoginPassword = (TextInputLayout) findViewById(R.id.login_password);
-        mLoginButton = (Button) findViewById(R.id.login_btn);
+        mLoginEmail = (TextInputLayout) findViewById(R.id.login_email_text_input_layout);
+        mLoginPassword = (TextInputLayout) findViewById(R.id.login_password_text_input_layout);
+        mLoginButton = (Button) findViewById(R.id.login_sign_in_button);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
 

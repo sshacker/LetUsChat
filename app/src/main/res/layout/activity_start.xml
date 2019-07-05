@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +8,7 @@
     tools:context=".StartActivity">
 
     <TextView
+        android:id="@+id/start_welcome_text"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -15,14 +17,14 @@
         android:layout_marginBottom="8dp"
         android:text="Welcome To Let Us Chat"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/start_reg_btn"
+        app:layout_constraintBottom_toTopOf="@+id/start_register_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.785" />
 
     <Button
-        android:id="@+id/start_reg_btn"
+        android:id="@+id/start_register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -38,7 +40,7 @@
         app:layout_constraintVertical_bias="0.927" />
 
     <Button
-        android:id="@+id/start_login_btn"
+        android:id="@+id/start_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,6 +51,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_reg_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/start_register_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

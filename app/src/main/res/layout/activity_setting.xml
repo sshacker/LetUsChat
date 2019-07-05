@@ -7,13 +7,13 @@
     tools:context=".SettingActivity">
 
     <include
-        layout="@layout/app_bar_layout"
-        android:id="@+id/setting_appbar"
+        layout="@layout/appbar_layout"
+        android:id="@+id/setting_appbar_toolbar"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/settings_image"
-        android:layout_below="@id/setting_appbar"
+        android:id="@+id/setting_profile_image"
+        android:layout_below="@id/setting_appbar_toolbar"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="100dp"
@@ -21,39 +21,39 @@
         android:src="@drawable/default_avatar" />
 
     <TextView
-        android:id="@+id/settings_name"
+        android:id="@+id/setting_profile_display_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dispaly Name"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/settings_image"
+        android:layout_below="@id/setting_profile_image"
         />
 
     <TextView
-        android:id="@+id/settings_status"
+        android:id="@+id/setting_status_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Hi ! I'm using LetUsChat."
-        android:layout_below="@id/settings_name"
+        android:layout_below="@id/setting_profile_display_name_text"
         />
 
     <Button
-        android:id="@+id/setting_image_btn"
+        android:id="@+id/setting_change_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Image"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/settings_status"
+        android:layout_below="@id/setting_status_text"
         />
 
     <Button
-        android:id="@+id/setting_status_btn"
+        android:id="@+id/setting_change_status_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Status"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/setting_image_btn"
+        android:layout_below="@id/setting_change_image_button"
         />
 
 </RelativeLayout>

@@ -32,14 +32,14 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_user);
 
-        mAllUserToolbar = (Toolbar) findViewById(R.id.user_appBar);
+        mAllUserToolbar = (Toolbar) findViewById(R.id.all_user_appbar_toolbar);
         setSupportActionBar(mAllUserToolbar);
         getSupportActionBar().setTitle(strAll_User);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
 
-        mAllUserRecyclerViewList = (RecyclerView) findViewById(R.id.user_list);
+        mAllUserRecyclerViewList = (RecyclerView) findViewById(R.id.all_user_users_list_recycler_view);
         mAllUserRecyclerViewList.setHasFixedSize(true);
         mAllUserRecyclerViewList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -49,7 +49,7 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
 
         FirebaseRecyclerAdapter<User, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, UsersViewHolder>(
                 User.class,
-                R.layout.users_single_layout,
+                R.layout.user_single_layout,
                 UsersViewHolder.class,
                 mUserDatabase
         ) {
@@ -85,17 +85,17 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
         }
 
         public void setDisplayName(String name) {
-            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_name);
+            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_layout_name_text);
             userNameView.setText(name);
         }
 
         public void setUserStatus(String status) {
-            TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_status);
+            TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_layout_status_text);
             userStatusView.setText(status);
         }
 
         public void setUserImage(String thumbImage) {
-            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_image);
+            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_layout_image);
             Picasso.get().load(thumbImage).placeholder(R.drawable.default_avatar).into(userImageView);
         }
     }

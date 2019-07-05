@@ -60,18 +60,18 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        mSettingToolbar = (Toolbar) findViewById(R.id.setting_appbar);
+        mSettingToolbar = (Toolbar) findViewById(R.id.setting_appbar_toolbar);
         setSupportActionBar(mSettingToolbar);
         getSupportActionBar().setTitle(strAccount_Settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
 
-        mDisplayImage = (CircleImageView) findViewById(R.id.settings_image);
-        mName = (TextView) findViewById(R.id.settings_name);
-        mStatus = (TextView) findViewById(R.id.settings_status);
-        mChangeStatusButton = (Button) findViewById(R.id.setting_status_btn);
-        mImageChangeButton = (Button) findViewById(R.id.setting_image_btn);
+        mDisplayImage = (CircleImageView) findViewById(R.id.setting_profile_image);
+        mName = (TextView) findViewById(R.id.setting_profile_display_name_text);
+        mStatus = (TextView) findViewById(R.id.setting_status_text);
+        mChangeStatusButton = (Button) findViewById(R.id.setting_change_status_button);
+        mImageChangeButton = (Button) findViewById(R.id.setting_change_image_button);
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 

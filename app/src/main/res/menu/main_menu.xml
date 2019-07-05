@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_all_btn"
+        android:id="@+id/main_menu_all_users_button"
         android:title="All Users"/>
 
     <item
-        android:id="@+id/main_setting_btn"
+        android:id="@+id/main_menu_account_settings_button"
         android:title="Account Settings"/>
 
     <item
-        android:id="@+id/main_logout_btn"
+        android:id="@+id/main_menu_log_out_button"
         android:title="Log Out" />
+
+    <item
+        android:id="@+id/main_menu_about_us_button"
+        android:title="About Us" />
+
 
 </menu>

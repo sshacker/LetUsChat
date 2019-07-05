@@ -54,10 +54,10 @@ public class RegisterActivity extends AppCompatActivity implements MyStringsCons
 
         mAuth = FirebaseAuth.getInstance();
 
-        mDisplayName = (TextInputLayout) findViewById(R.id.reg_display_name);
-        mEmail = (TextInputLayout) findViewById(R.id.reg_email);
-        mPassword = (TextInputLayout) findViewById(R.id.reg_password);
-        mCreateNewAccountButton = (Button) findViewById(R.id.reg_create_btn);
+        mDisplayName = (TextInputLayout) findViewById(R.id.register_display_name_text_input_layout);
+        mEmail = (TextInputLayout) findViewById(R.id.register_email_text_input_layout);
+        mPassword = (TextInputLayout) findViewById(R.id.register_password_text_input_layout);
+        mCreateNewAccountButton = (Button) findViewById(R.id.register_create_account_button);
 
         mCreateNewAccountButton.setOnClickListener(new View.OnClickListener() {
 

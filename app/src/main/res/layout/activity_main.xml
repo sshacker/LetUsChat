@@ -8,22 +8,24 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/main_app_bar_id"
+        android:id="@+id/main_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/app_bar_layout" android:id="@+id/main_page_toolbar"/>
+        <include
+            layout="@layout/appbar_layout"
+            android:id="@+id/main_appbar_toolbar"/>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/main_tabs"
+            android:id="@+id/main_tabs_tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
+            android:layout_height="wrap_content"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/main_tabpager"
-        android:layout_below="@+id/main_app_bar_id"
+        android:id="@+id/main_tabs_view_pager"
+        android:layout_below="@+id/main_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RegisterActivity" >
-    <include layout="@layout/app_bar_layout" android:id="@+id/register_tool_bar"></include>
+    <include layout="@layout/appbar_layout" android:id="@+id/register_tool_bar"></include>
 
     <TextView
-        android:id="@+id/createAccountTxt"
+        android:id="@+id/register_create_account_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create An Account"
+        android:text="Create A New Account"
         android:textSize="20sp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_display_name"
+        android:id="@+id/register_display_name_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -29,7 +29,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_email"
+        android:id="@+id/register_email_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -41,7 +41,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reg_password"
+        android:id="@+id/register_password_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -53,7 +53,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/reg_create_btn"
+        android:id="@+id/register_create_account_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"

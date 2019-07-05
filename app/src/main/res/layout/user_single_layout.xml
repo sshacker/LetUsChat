@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_single_image"
+        android:id="@+id/user_single_layout_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/default_avatar"
@@ -14,7 +14,7 @@
         android:layout_marginBottom="15dp" />
 
     <TextView
-        android:id="@+id/user_single_name"
+        android:id="@+id/user_single_layout_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -23,18 +23,18 @@
         android:text="display name" />
 
     <ImageView
-        android:id="@+id/user_single_online_icon"
+        android:id="@+id/user_single_layout_online_icon_image"
         android:layout_width="13dp"
         android:layout_height="13dp"
         android:src="@drawable/online_icon"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:visibility="invisible"
-        android:layout_toRightOf="@id/user_single_name"
+        android:layout_toRightOf="@id/user_single_layout_name_text"
         />
 
     <TextView
-        android:id="@+id/user_single_status"
+        android:id="@+id/user_single_layout_status_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"

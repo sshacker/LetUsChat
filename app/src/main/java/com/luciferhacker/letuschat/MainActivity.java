@@ -41,14 +41,14 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
             mUserReference = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUser.getUid());
         }
 
-        mMainToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
+        mMainToolbar = (Toolbar) findViewById(R.id.main_appbar_toolbar);
         setSupportActionBar(mMainToolbar);
         getSupportActionBar().setTitle(strLetUsChat);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.main_tabpager);
+        mViewPager = (ViewPager) findViewById(R.id.main_tabs_view_pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs_tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -94,18 +94,23 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.main_logout_btn) {
+        if (item.getItemId() == R.id.main_menu_log_out_button) {
             FirebaseAuth.getInstance().signOut();
             sendToStart();
         }
-        if (item.getItemId() == R.id.main_setting_btn) {
+        if (item.getItemId() == R.id.main_menu_about_us_button) {
+            Intent aboutUsIntent = new Intent(MainActivity.this, AboutUsActivity.class);
+            startActivity(aboutUsIntent);
+        }
+        if (item.getItemId() == R.id.main_menu_account_settings_button) {
             Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(settingIntent);
         }
-        if (item.getItemId() == R.id.main_all_btn) {
+        if (item.getItemId() == R.id.main_menu_all_users_button) {
             Intent userIntent = new Intent(MainActivity.this, AllUserActivity.class);
             startActivity(userIntent);
         }
+
         return true;
     }
 }

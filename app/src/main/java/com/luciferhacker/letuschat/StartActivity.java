@@ -18,8 +18,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        mRegisterNewAccountButton = (Button) findViewById(R.id.start_reg_btn);
-        mLoginAccountButton = (Button) findViewById(R.id.start_login_btn);
+        mRegisterNewAccountButton = (Button) findViewById(R.id.start_register_button);
+        mLoginAccountButton = (Button) findViewById(R.id.start_login_button);
 
         mLoginAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override

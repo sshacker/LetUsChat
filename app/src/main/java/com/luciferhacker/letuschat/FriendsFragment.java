@@ -49,7 +49,7 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
 
         // Inflate the layout for this fragment
         mMainView = inflater.inflate(R.layout.fragment_friends, container, false);
-        mFriendsList = (RecyclerView) mMainView.findViewById(R.id.friends_list_recycler_view_fragments_friends);
+        mFriendsList = (RecyclerView) mMainView.findViewById(R.id.fragment_friends_friends_list_recycler_view);
 
         mAuth = FirebaseAuth.getInstance();
         mCurrentUserId = mAuth.getCurrentUser().getUid();
@@ -69,7 +69,7 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
         super.onStart();
         FirebaseRecyclerAdapter<Friends, FriendsViewHolder> friendsRecyclerViewAdapter = new FirebaseRecyclerAdapter<Friends, FriendsViewHolder>(
                 Friends.class,
-                R.layout.users_single_layout,
+                R.layout.user_single_layout,
                 FriendsViewHolder.class,
                 mFriendsDatabase
         )   {
@@ -116,22 +116,22 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
         }
 
         public void setDate(String date){
-            TextView userDateView = (TextView) mView.findViewById(R.id.user_single_status);
+            TextView userDateView = (TextView) mView.findViewById(R.id.user_single_layout_status_text);
             userDateView.setText(date);
         }
 
         public void setName(String name){
-            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_name);
+            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_layout_name_text);
             userNameView.setText(name);
         }
 
         public void setUserImage(String thumb, Context ctx){
-            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_image);
+            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_layout_image);
             Picasso.get().load(thumb).placeholder(R.drawable.default_avatar).into(userImageView);
         }
 
         public void setUserOnlineStatus (Boolean onlineStatus){
-            ImageView userOnlineView = (ImageView) mView.findViewById(R.id.user_single_online_icon);
+            ImageView userOnlineView = (ImageView) mView.findViewById(R.id.user_single_layout_online_icon_image);
             if(onlineStatus == true){
                 userOnlineView.setVisibility(View.VISIBLE);
             } else {
