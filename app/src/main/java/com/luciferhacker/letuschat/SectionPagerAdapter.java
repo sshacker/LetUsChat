@@ -6,10 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter implements MyStringsConstant {
+public class SectionPagerAdapter extends FragmentPagerAdapter implements MyStringsConstant {
 
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    public SectionPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

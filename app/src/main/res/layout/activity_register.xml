@@ -6,54 +6,58 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RegisterActivity" >
-    <include layout="@layout/appbar_layout" android:id="@+id/register_tool_bar"></include>
+
+    <include
+        android:id="@+id/register_appbar_include"
+        layout="@layout/appbar_layout"
+        />
 
     <TextView
-        android:id="@+id/register_create_account_text"
+        android:id="@+id/register_createAccount_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create A New Account"
+        android:text="@string/create_a_new_account"
         android:textSize="20sp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/register_display_name_text_input_layout"
+        android:id="@+id/register_profileName_textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Display Name"
+            android:hint="@string/display_name"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/register_email_text_input_layout"
+        android:id="@+id/register_email_textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/register_password_text_input_layout"
+        android:id="@+id/register_password_textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/register_create_account_button"
+        android:id="@+id/register_createAccount_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"

@@ -5,41 +5,44 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_single_layout_image"
+        android:id="@+id/userSingleLayout_profileImage_circleImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/default_avatar"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/default_avatar"
+        />
 
     <TextView
-        android:id="@+id/user_single_layout_name_text"
+        android:id="@+id/userSingleLayout_profileName_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
-        android:text="display name" />
+        android:text="@string/display_name"
+        />
 
     <ImageView
-        android:id="@+id/user_single_layout_online_icon_image"
+        android:id="@+id/userSingleLayout_onlineIcon_imageView"
         android:layout_width="13dp"
         android:layout_height="13dp"
-        android:src="@drawable/online_icon"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:visibility="invisible"
-        android:layout_toRightOf="@id/user_single_layout_name_text"
+        android:layout_toRightOf="@id/userSingleLayout_profileName_textView"
+        android:src="@drawable/online_icon"
         />
 
     <TextView
-        android:id="@+id/user_single_layout_status_text"
+        android:id="@+id/userSingleLayout_status_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="45dp"
-        android:text="this this the status of letuschat" />
+        android:text="@string/hi_i_m_using_letuschat"
+        />
 
 </RelativeLayout>

@@ -3,20 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_menu_all_users_button"
-        android:title="All Users"/>
+        android:id="@+id/mainMenu_allUsers_item"
+        android:title="@string/all_users"/>
 
     <item
-        android:id="@+id/main_menu_account_settings_button"
-        android:title="Account Settings"/>
+        android:id="@+id/mainMenu_accountSettings_item"
+        android:title="@string/account_settings"/>
 
     <item
-        android:id="@+id/main_menu_log_out_button"
-        android:title="Log Out" />
+        android:id="@+id/mainMenu_logOut_item"
+        android:title="@string/log_out" />
 
     <item
-        android:id="@+id/main_menu_about_us_button"
-        android:title="About Us" />
+        android:id="@+id/mainMenu_aboutUs_item"
+        android:title="@string/about_us" />
 
 
 </menu>

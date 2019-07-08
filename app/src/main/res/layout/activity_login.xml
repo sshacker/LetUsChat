@@ -8,46 +8,47 @@
     tools:context=".LoginActivity" >
 
     <include
+        android:id="@+id/login_appbar_include"
         layout="@layout/appbar_layout"
-        android:id="@+id/login_appbar_toolbar"/>
+        />
 
     <TextView
-        android:id="@+id/login_already_have_account_text"
+        android:id="@+id/login_alreadyAccount_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Already Have An Account"
+        android:text = "@string/already_have_an_account"
         android:textSize="20sp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_email_text_input_layout"
+        android:id="@+id/login_email_textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_password_text_input_layout"
+        android:id="@+id/login_password_textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/login_sign_in_button"
+        android:id="@+id/login_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         />
 
 </LinearLayout>

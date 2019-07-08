@@ -4,7 +4,7 @@ public interface MyStringsConstant {
 
     // TITLE HEADING
     String strLetUsChat = "LetUsChat";
-    String strAll_User = "All User";
+    String strAll_Users = "All Users";
     String strLogin = "Login";
     String strRegister = "Register";
     String strAccount_Settings = "Account Settings";
@@ -33,7 +33,7 @@ public interface MyStringsConstant {
     String strPROFILE_ORIGINAL_IMAGES = "PROFILE_ORIGINAL_IMAGES";
 
     // USER BASIC DATA
-    String strName = "name";
+    String strNAME = "name";
     String strEMAIL = "email";
     String strSTATUS = "status";
     String strIMAGE = "image";
@@ -60,7 +60,5 @@ public interface MyStringsConstant {
     String strDATE = "date";
 
     // ONLINE STATUS
-    String strONLINE_STATUS = "online_status";
     String strONLINE = "online";
-    String strOFFLINE = "offline";
 }

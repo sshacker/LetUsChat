@@ -26,12 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class StatusActivity extends AppCompatActivity implements MyStringsConstant {
 
-    private Toolbar mStatusToolbar;
+    private Toolbar mToolbar;
     private TextInputLayout mStatus;
     private Button mSaveStatusButton;
-    private DatabaseReference mStatusDatabase;
+    private DatabaseReference mUsersDatabase;
     private FirebaseUser mCurrentUser;
-    private ProgressDialog mStatusProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +41,17 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String currentUserId = mCurrentUser.getUid();
 
-        mStatusDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUserId);
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUserId);
 
-        mStatusToolbar = (Toolbar) findViewById(R.id.status_appbar_toolbar);
-        setSupportActionBar(mStatusToolbar);
+        mToolbar = (Toolbar) findViewById(R.id.status_appbar_include);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(strAccount_Status);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String statusValue = getIntent().getStringExtra(strSTATUS_VALUE);
 
-        mStatus = (TextInputLayout) findViewById(R.id.status_text_input_layout);
-        mSaveStatusButton = (Button) findViewById(R.id.status_save_button);
+        mStatus = (TextInputLayout) findViewById(R.id.status_status_textInputLayout);
+        mSaveStatusButton = (Button) findViewById(R.id.status_saveStatus_button);
 
         mStatus.getEditText().setText(statusValue);
 
@@ -59,17 +59,17 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
             @Override
             public void onClick(View v) {
 
-                mStatusProgressDialog = new ProgressDialog(StatusActivity.this);
-                mStatusProgressDialog.setTitle("Saving Changes");
-                mStatusProgressDialog.setMessage("please wait !");
-                mStatusProgressDialog.show();
+                mProgressDialog = new ProgressDialog(StatusActivity.this);
+                mProgressDialog.setTitle("Saving Changes");
+                mProgressDialog.setMessage("please wait !");
+                mProgressDialog.show();
 
                 String status = mStatus.getEditText().getText().toString();
-                mStatusDatabase.child(strSTATUS).setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mUsersDatabase.child(strSTATUS).setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            mStatusProgressDialog.dismiss();
+                            mProgressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
 
                             Intent settingIntent = new Intent(StatusActivity.this, SettingActivity.class);
@@ -77,7 +77,7 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-                            mStatusProgressDialog.dismiss();
+                            mProgressDialog.dismiss();
                         }
                     }
                 });

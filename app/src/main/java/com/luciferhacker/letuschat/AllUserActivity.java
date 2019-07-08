@@ -23,25 +23,25 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AllUserActivity extends AppCompatActivity implements MyStringsConstant {
 
-    private Toolbar mAllUserToolbar;
-    private RecyclerView mAllUserRecyclerViewList;
-    private DatabaseReference mUserDatabase;
+    private Toolbar mToolbar;
+    private RecyclerView mAllUserList;
+    private DatabaseReference mUsersDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_user);
 
-        mAllUserToolbar = (Toolbar) findViewById(R.id.all_user_appbar_toolbar);
-        setSupportActionBar(mAllUserToolbar);
-        getSupportActionBar().setTitle(strAll_User);
+        mToolbar = (Toolbar) findViewById(R.id.allUser_appbar_include);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(strAll_Users);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
 
-        mAllUserRecyclerViewList = (RecyclerView) findViewById(R.id.all_user_users_list_recycler_view);
-        mAllUserRecyclerViewList.setHasFixedSize(true);
-        mAllUserRecyclerViewList.setLayoutManager(new LinearLayoutManager(this));
+        mAllUserList = (RecyclerView) findViewById(R.id.allUser_usersList_recyclerView);
+        mAllUserList.setHasFixedSize(true);
+        mAllUserList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     protected void onStart() {
@@ -51,7 +51,7 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
                 User.class,
                 R.layout.user_single_layout,
                 UsersViewHolder.class,
-                mUserDatabase
+                mUsersDatabase
         ) {
             @Override
             protected void populateViewHolder(UsersViewHolder usersViewHolder, User users, int position) {
@@ -72,7 +72,7 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
 
             }
         };
-        mAllUserRecyclerViewList.setAdapter(firebaseRecyclerAdapter);
+        mAllUserList.setAdapter(firebaseRecyclerAdapter);
     }
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {
@@ -85,17 +85,17 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
         }
 
         public void setDisplayName(String name) {
-            TextView userNameView = (TextView) mView.findViewById(R.id.user_single_layout_name_text);
+            TextView userNameView = (TextView) mView.findViewById(R.id.userSingleLayout_profileName_textView);
             userNameView.setText(name);
         }
 
         public void setUserStatus(String status) {
-            TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_layout_status_text);
+            TextView userStatusView = (TextView) mView.findViewById(R.id.userSingleLayout_status_textView);
             userStatusView.setText(status);
         }
 
         public void setUserImage(String thumbImage) {
-            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_layout_image);
+            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.userSingleLayout_profileImage_circleImageView);
             Picasso.get().load(thumbImage).placeholder(R.drawable.default_avatar).into(userImageView);
         }
     }

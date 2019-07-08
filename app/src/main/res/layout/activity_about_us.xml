@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,16 +9,36 @@
     tools:context=".AboutUsActivity">
 
     <ImageView
-        android:id="@+id/about_us_shivam_image"
+        android:id="@+id/aboutUs_developer1_imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/default_avatar"
+        android:contentDescription="@string/developers"
         />
+
     <TextView
+        android:id="@+id/aboutUs_developer1_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="SHIVAM SONKAR"
+        android:text="@string/shivam_sonkar"
+        android:textSize="20sp"
+        />
+
+    <ImageView
+        android:id="@+id/aboutUs_developer2_imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/default_avatar"
+        android:contentDescription="@string/developers"
+        />
+
+    <TextView
+        android:id="@+id/aboutUs_developer2_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/vikash_verma"
         android:textSize="20sp"
         />
 

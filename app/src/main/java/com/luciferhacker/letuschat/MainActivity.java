@@ -21,10 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity<sectionsPageAdapter> extends AppCompatActivity implements MyStringsConstant {
 
-    private Toolbar mMainToolbar;
+    private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private SectionPagerAdapter mSectionPagerAdapter;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserReference;
 
@@ -41,14 +41,14 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
             mUserReference = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUser.getUid());
         }
 
-        mMainToolbar = (Toolbar) findViewById(R.id.main_appbar_toolbar);
-        setSupportActionBar(mMainToolbar);
+        mToolbar = (Toolbar) findViewById(R.id.main_appbar_include);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(strLetUsChat);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.main_tabs_view_pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mTabLayout = (TabLayout) findViewById(R.id.main_tabs_tab_layout);
+        mSectionPagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.main_tabs_viewPager);
+        mViewPager.setAdapter(mSectionPagerAdapter);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs_tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -94,19 +94,19 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.main_menu_log_out_button) {
+        if (item.getItemId() == R.id.mainMenu_logOut_item) {
             FirebaseAuth.getInstance().signOut();
             sendToStart();
         }
-        if (item.getItemId() == R.id.main_menu_about_us_button) {
+        if (item.getItemId() == R.id.mainMenu_aboutUs_item) {
             Intent aboutUsIntent = new Intent(MainActivity.this, AboutUsActivity.class);
             startActivity(aboutUsIntent);
         }
-        if (item.getItemId() == R.id.main_menu_account_settings_button) {
+        if (item.getItemId() == R.id.mainMenu_accountSettings_item) {
             Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(settingIntent);
         }
-        if (item.getItemId() == R.id.main_menu_all_users_button) {
+        if (item.getItemId() == R.id.mainMenu_allUsers_item) {
             Intent userIntent = new Intent(MainActivity.this, AllUserActivity.class);
             startActivity(userIntent);
         }

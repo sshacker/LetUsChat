@@ -45,33 +45,33 @@ import id.zelory.compressor.Compressor;
 
 public class SettingActivity extends AppCompatActivity implements MyStringsConstant {
 
-    private Toolbar mSettingToolbar;
-    private CircleImageView mDisplayImage;
-    private TextView mName;
+    private Toolbar mToolbar;
+    private CircleImageView mProfileImage;
+    private TextView mProfileName;
     private TextView mStatus;
-    private Button mChangeStatusButton, mImageChangeButton;
+    private Button mChangeStatusButton, mChangeImageButton;
     private DatabaseReference mUsersDatabase;
     private FirebaseUser mCurrentUser;
     private StorageReference mImageStorage;
-    private ProgressDialog mSettingProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        mSettingToolbar = (Toolbar) findViewById(R.id.setting_appbar_toolbar);
-        setSupportActionBar(mSettingToolbar);
+        mToolbar = (Toolbar) findViewById(R.id.setting_appbar_include);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(strAccount_Settings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
 
-        mDisplayImage = (CircleImageView) findViewById(R.id.setting_profile_image);
-        mName = (TextView) findViewById(R.id.setting_profile_display_name_text);
-        mStatus = (TextView) findViewById(R.id.setting_status_text);
-        mChangeStatusButton = (Button) findViewById(R.id.setting_change_status_button);
-        mImageChangeButton = (Button) findViewById(R.id.setting_change_image_button);
+        mProfileImage = (CircleImageView) findViewById(R.id.setting_profileImage_circleImageView);
+        mProfileName = (TextView) findViewById(R.id.setting_profileName_textView);
+        mStatus = (TextView) findViewById(R.id.setting_status_textView);
+        mChangeStatusButton = (Button) findViewById(R.id.setting_changeStatus_button);
+        mChangeImageButton = (Button) findViewById(R.id.setting_changeImage_button);
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -85,16 +85,16 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
 
                 if (dataSnapshot.exists()) {
 
-                    String name = dataSnapshot.child(strName).getValue(String.class);
+                    String name = dataSnapshot.child(strNAME).getValue(String.class);
                     final String image = dataSnapshot.child(strIMAGE).getValue(String.class);
                     String status = dataSnapshot.child(strSTATUS).getValue(String.class);
                     String thumbImage = dataSnapshot.child(strTHUMB_IMAGE).getValue(String.class);
 
-                    mName.setText(name);
+                    mProfileName.setText(name);
                     mStatus.setText(status);
 
                     if (!image.equals(strDEFAULT)) {
-                        Picasso.get().load(image).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_avatar).into(mDisplayImage, new Callback() {
+                        Picasso.get().load(image).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_avatar).into(mProfileImage, new Callback() {
                             @Override
                             public void onSuccess() {
 
@@ -102,7 +102,7 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
 
                             @Override
                             public void onError(Exception e) {
-                                Picasso.get().load(image).placeholder(R.drawable.default_avatar).into(mDisplayImage);
+                                Picasso.get().load(image).placeholder(R.drawable.default_avatar).into(mProfileImage);
                             }
                         });
                     }
@@ -127,7 +127,7 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
             }
         });
 
-        mImageChangeButton.setOnClickListener(new View.OnClickListener() {
+        mChangeImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -149,11 +149,11 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
 
             if (resultCode == RESULT_OK) {
 
-                mSettingProgressDialog = new ProgressDialog(SettingActivity.this);
-                mSettingProgressDialog.setTitle("Uploading Profile Image");
-                mSettingProgressDialog.setMessage("please wait");
-                mSettingProgressDialog.setCanceledOnTouchOutside(false);
-                mSettingProgressDialog.show();
+                mProgressDialog = new ProgressDialog(SettingActivity.this);
+                mProgressDialog.setTitle("Uploading Profile Image");
+                mProgressDialog.setMessage("please wait");
+                mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.show();
 
                 Uri resultUri = result.getUri();
                 File thumbImageFilePathFileRef = new File(resultUri.getPath());
@@ -203,10 +203,10 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        mSettingProgressDialog.dismiss();
+                                                                        mProgressDialog.dismiss();
                                                                         Toast.makeText(SettingActivity.this, "Profile Image Updated", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        mSettingProgressDialog.dismiss();
+                                                                        mProgressDialog.dismiss();
                                                                         Toast.makeText(SettingActivity.this, "failed", Toast.LENGTH_LONG).show();
                                                                     }
 
@@ -214,14 +214,14 @@ public class SettingActivity extends AppCompatActivity implements MyStringsConst
                                                             });
 
                                                         } else {
-                                                            mSettingProgressDialog.dismiss();
+                                                            mProgressDialog.dismiss();
                                                             Toast.makeText(SettingActivity.this, "Thumb downloadUrl failed", Toast.LENGTH_LONG).show();
                                                         }
                                                     }
                                                 });
 
                                             } else {
-                                                mSettingProgressDialog.dismiss();
+                                                mProgressDialog.dismiss();
                                                 Toast.makeText(SettingActivity.this, "Thumb Upload failed", Toast.LENGTH_LONG).show();
                                             }
                                         }
