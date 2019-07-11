@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements MyStringsCons
     private TextInputLayout mProfileName;
     private TextInputLayout mEmail;
     private TextInputLayout mPassword;
-    private Button mCreateNewAccountButton;
+    private Button mCreateAccountButton;
     private Toolbar mToolbar;
 
     private FirebaseAuth mAuth;
@@ -57,9 +57,9 @@ public class RegisterActivity extends AppCompatActivity implements MyStringsCons
         mProfileName = (TextInputLayout) findViewById(R.id.register_profileName_textInputLayout);
         mEmail = (TextInputLayout) findViewById(R.id.register_email_textInputLayout);
         mPassword = (TextInputLayout) findViewById(R.id.register_password_textInputLayout);
-        mCreateNewAccountButton = (Button) findViewById(R.id.register_createAccount_button);
+        mCreateAccountButton = (Button) findViewById(R.id.register_createAccount_button);
 
-        mCreateNewAccountButton.setOnClickListener(new View.OnClickListener() {
+        mCreateAccountButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

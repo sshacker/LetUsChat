@@ -48,11 +48,10 @@ public class StatusActivity extends AppCompatActivity implements MyStringsConsta
         getSupportActionBar().setTitle(strAccount_Status);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String statusValue = getIntent().getStringExtra(strSTATUS_VALUE);
-
         mStatus = (TextInputLayout) findViewById(R.id.status_status_textInputLayout);
         mSaveStatusButton = (Button) findViewById(R.id.status_saveStatus_button);
 
+        String statusValue = getIntent().getStringExtra(strSTATUS_VALUE);
         mStatus.getEditText().setText(statusValue);
 
         mSaveStatusButton.setOnClickListener(new View.OnClickListener() {

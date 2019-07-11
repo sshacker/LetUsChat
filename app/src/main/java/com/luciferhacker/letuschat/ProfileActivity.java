@@ -30,7 +30,7 @@ import java.util.Map;
 public class ProfileActivity extends AppCompatActivity implements MyStringsConstant {
 
     private ImageView mProfileImage;
-    private TextView mProfileName, mStatus, mFriendsTotal;
+    private TextView mProfileName, mStatus, mTotalFriends;
     private Button mSendFriendsRequestButton, mDeclineFriendsRequestButton;
 
     private DatabaseReference mUsersDatabase;
@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity implements MyStringsConst
         mProfileImage = (ImageView) findViewById(R.id.profile_profileImage_circleImageView);
         mProfileName = (TextView) findViewById(R.id.profile_profileName_textView);
         mStatus = (TextView) findViewById(R.id.profile_status_textView);
-        mFriendsTotal = (TextView) findViewById(R.id.profile_totalFriends_textView);
+        mTotalFriends = (TextView) findViewById(R.id.profile_totalFriends_textView);
         mSendFriendsRequestButton = (Button) findViewById(R.id.profile_sendFriendRequest_button);
         mDeclineFriendsRequestButton = (Button) findViewById(R.id.profile_declineFriendRequest_button);
 

@@ -29,48 +29,46 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity implements MyStringsConstant {
 
-    private Toolbar mLoginToolbar;
-    private TextInputLayout mLoginEmail;
-    private TextInputLayout mLoginPassword;
+    private Toolbar mToolbar;
+    private TextInputLayout mEmail;
+    private TextInputLayout mPassword;
     private Button mLoginButton;
-
     private FirebaseAuth mAuth;
-    private DatabaseReference mUserDatabase;
-
-    private ProgressDialog mLoginProgressDialog;
+    private DatabaseReference mUsersDatabase;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mLoginToolbar = (Toolbar) findViewById(R.id.login_appbar_include);
-        setSupportActionBar(mLoginToolbar);
+        mToolbar = (Toolbar) findViewById(R.id.login_appbar_include);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(strLogin);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        mLoginProgressDialog = new ProgressDialog(this);
-
-        mAuth = FirebaseAuth.getInstance();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
-
-        mLoginEmail = (TextInputLayout) findViewById(R.id.login_email_textInputLayout);
-        mLoginPassword = (TextInputLayout) findViewById(R.id.login_password_textInputLayout);
+        mEmail = (TextInputLayout) findViewById(R.id.login_email_textInputLayout);
+        mPassword = (TextInputLayout) findViewById(R.id.login_password_textInputLayout);
         mLoginButton = (Button) findViewById(R.id.login_login_button);
+
+        mProgressDialog = new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                String email = mLoginEmail.getEditText().getText().toString();
-                String password = mLoginPassword.getEditText().getText().toString();
+                String email = mEmail.getEditText().getText().toString();
+                String password = mPassword.getEditText().getText().toString();
 
                 if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
-                    mLoginProgressDialog.setTitle("Logging In");
-                    mLoginProgressDialog.setMessage("please wait while we login");
-                    mLoginProgressDialog.setCanceledOnTouchOutside(false);
-                    mLoginProgressDialog.show();
+                    mProgressDialog.setTitle("Logging In");
+                    mProgressDialog.setMessage("please wait while we login");
+                    mProgressDialog.setCanceledOnTouchOutside(false);
+                    mProgressDialog.show();
+
                     loggingUser(email, password);
                 }
             }
@@ -83,12 +81,12 @@ public class LoginActivity extends AppCompatActivity implements MyStringsConstan
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            mLoginProgressDialog.dismiss();
+                            mProgressDialog.dismiss();
 
                             String currentUserId = mAuth.getCurrentUser().getUid();
                             String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
-                            mUserDatabase.child(currentUserId).child(strDEVICE_TOKEN).setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            mUsersDatabase.child(currentUserId).child(strDEVICE_TOKEN).setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
 
@@ -101,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements MyStringsConstan
                             });
 
                         } else {
-                            mLoginProgressDialog.hide();
+                            mProgressDialog.hide();
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }

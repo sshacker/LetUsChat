@@ -1,7 +1,10 @@
 package com.luciferhacker.letuschat;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,7 +46,6 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -78,21 +80,49 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
 
                 friendsViewHolder.setDate(friends.getDate());
 
-                String listUserId = getRef(i).getKey();
+                final String listUserId = getRef(i).getKey();
                 mUsersDatabase.child(listUserId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String userName = dataSnapshot.child(strNAME).getValue(String.class);
+                        final String userName = dataSnapshot.child(strNAME).getValue(String.class);
                         String userThumb = dataSnapshot.child(strTHUMB_IMAGE).getValue(String.class);
 
                         friendsViewHolder.setName(userName);
                         friendsViewHolder.setUserImage(userThumb,getContext());
 
                         if(dataSnapshot.hasChild(strONLINE)){
-                            Boolean userOnline = (Boolean) dataSnapshot.child(strONLINE).getValue();
+                            String userOnline = dataSnapshot.child(strONLINE).getValue().toString();
                             friendsViewHolder.setUserOnlineStatus(userOnline);
                         }
+
+                        friendsViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                CharSequence options[] = new CharSequence[] {"Open Profile", "Send Massege"};
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("Select Option");
+                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        if(which == 0){
+                                            Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
+                                            profileIntent.putExtra(strUSER_ID, listUserId);
+                                            startActivity(profileIntent);
+                                        }
+
+                                        else if (which == 1){
+                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                            chatIntent.putExtra(strUSER_ID, listUserId);
+                                            startActivity(chatIntent);
+                                        }
+                                    }
+                                });
+
+                                builder.show();
+                            }
+                        });
                     }
 
                     @Override
@@ -130,14 +160,13 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
             Picasso.get().load(thumb).placeholder(R.drawable.default_avatar).into(userImageView);
         }
 
-        public void setUserOnlineStatus (Boolean onlineStatus){
+        public void setUserOnlineStatus (String onlineStatus){
             ImageView userOnlineView = (ImageView) mView.findViewById(R.id.userSingleLayout_onlineIcon_imageView);
-            if(onlineStatus == true){
+            if(onlineStatus.equals(strTRUE)){
                 userOnlineView.setVisibility(View.VISIBLE);
             } else {
                 userOnlineView.setVisibility(View.INVISIBLE);
             }
         }
     }
-
 }

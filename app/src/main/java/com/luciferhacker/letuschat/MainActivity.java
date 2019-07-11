@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 public class MainActivity<sectionsPageAdapter> extends AppCompatActivity implements MyStringsConstant {
 
@@ -26,7 +27,8 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
     private ViewPager mViewPager;
     private SectionPagerAdapter mSectionPagerAdapter;
     private FirebaseAuth mAuth;
-    private DatabaseReference mUserReference;
+    private DatabaseReference mUsersDatabase;
+    private FirebaseUser mCurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,11 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        mCurrentUser = mAuth.getCurrentUser();
 
-        if( currentUser != null ){
+        if( mCurrentUser != null ){
 
-            mUserReference = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(currentUser.getUid());
+            mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(mCurrentUser.getUid());
         }
 
         mToolbar = (Toolbar) findViewById(R.id.main_appbar_include);
@@ -57,24 +59,22 @@ public class MainActivity<sectionsPageAdapter> extends AppCompatActivity impleme
     public void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        // updateUI(currentUser);
-
-        // If user no login re-direct to StartActivity
-        if (currentUser == null) {
-            sendToStart();
+        if (mCurrentUser != null) {
+            /* ONLINE USER */
+            mUsersDatabase.child(strONLINE).setValue(strTRUE);
 
         } else {
-            /* ONLINE USER */
-            //mUserReference.child(strONLINE).setValue(true);
+            sendToStart();
         }
     }
 
     protected void onStop(){
         super.onStop();
 
-        /* OFFLINE USER */
-        // mUserReference.child(strONLINE).setValue(false);
+        if (mCurrentUser != null) {
+            /* OFFLINE USER */
+            mUsersDatabase.child(strONLINE).setValue(ServerValue.TIMESTAMP);
+        }
     }
 
     private void sendToStart() {

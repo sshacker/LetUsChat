@@ -24,7 +24,7 @@
         android:id="@+id/setting_profileName_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/display_name"
+        android:text="@string/profile_name"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/setting_profileImage_circleImageView"
         />

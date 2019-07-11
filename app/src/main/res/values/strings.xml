@@ -30,5 +30,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="display_name">Display Name</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="last_seen">Last Seen</string>
+    <string name="type_a_message">Type a message...</string>
 </resources>

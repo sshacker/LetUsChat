@@ -61,4 +61,7 @@ public interface MyStringsConstant {
 
     // ONLINE STATUS
     String strONLINE = "online";
+    String strLAST_SEEN = "last_seen";
+    String strTRUE = "true";
+    String strFALSE = "false";
 }

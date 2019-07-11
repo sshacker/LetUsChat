@@ -37,11 +37,11 @@ public class AllUserActivity extends AppCompatActivity implements MyStringsConst
         getSupportActionBar().setTitle(strAll_Users);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
-
         mAllUserList = (RecyclerView) findViewById(R.id.allUser_usersList_recyclerView);
         mAllUserList.setHasFixedSize(true);
         mAllUserList.setLayoutManager(new LinearLayoutManager(this));
+
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE);
     }
 
     protected void onStart() {

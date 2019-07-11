@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -44,9 +45,8 @@ public class LetUsChat extends Application implements MyStringsConstant{
 
                     if (dataSnapshot != null) {
 
-                        /* ONLINE AND OFFLINE APP RUNNING STATUS */
-                        mUsersDatabase.child(strONLINE).setValue(true);
-                        mUsersDatabase.child(strONLINE).onDisconnect().setValue(false);
+                        /* OFFLINE APP */
+                        mUsersDatabase.child(strONLINE).onDisconnect().setValue(ServerValue.TIMESTAMP);
                     }
                 }
 
