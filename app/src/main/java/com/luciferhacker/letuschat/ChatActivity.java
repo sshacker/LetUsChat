@@ -72,8 +72,13 @@ public class ChatActivity extends AppCompatActivity implements MyStringsConstant
 
                     if (online.equals(strTRUE)) {
                         mLastSeen.setText(strONLINE);
+
                     } else {
-                        mLastSeen.setText(online);
+
+                        GetTimeAgo getTimeAgoObject = new GetTimeAgo();
+                        long lastTime = Long.parseLong(online);
+                        String lastSeenTime = getTimeAgoObject.getTimeAgo(lastTime, getApplicationContext());
+                        mLastSeen.setText(lastSeenTime);
                     }
                 }
             }
