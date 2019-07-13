@@ -20,8 +20,8 @@
         android:weightSum="10"
         android:gravity="bottom">
 
-        <ImageView
-            android:id="@+id/chat_addIcon_ImageView"
+        <ImageButton
+            android:id="@+id/chat_addButton_imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/add_icon"
@@ -29,18 +29,18 @@
             android:padding="4dp"
             />
 
-        <TextView
+        <EditText
             android:id="@+id/chat_typeText_textView"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_weight="8"
-            android:text="@string/type_a_message"
+            android:hint="@string/type_a_message"
             android:textSize="20sp"
             android:padding="10dp"
             />
 
-        <ImageView
-            android:id="@+id/chat_sendIcon_ImageView"
+        <ImageButton
+            android:id="@+id/chat_sendButton_imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/send_icon"
