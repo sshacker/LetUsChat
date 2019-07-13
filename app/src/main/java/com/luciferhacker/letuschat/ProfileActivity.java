@@ -61,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements MyStringsConst
         mCurrentState = strNOT_FRIENDS;
 
         final String userId = getIntent().getStringExtra(strUSER_ID);
+
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child(strUSERS_DATABASE).child(userId);
         mFriendsRequestDatabase = FirebaseDatabase.getInstance().getReference().child(strFRIENDS_REQUEST_DATABASE);
         mFriendsDatabase = FirebaseDatabase.getInstance().getReference().child(strFRIENDS_DATABASE);

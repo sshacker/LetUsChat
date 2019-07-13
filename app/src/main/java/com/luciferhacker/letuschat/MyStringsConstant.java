@@ -15,6 +15,7 @@ public interface MyStringsConstant {
     String strFRIENDS_DATABASE = "FRIENDS_DATABASE";
     String strUSERS_DATABASE = "USERS_DATABASE";
     String strNOTIFICATIONS_DATABASE = "NOTIFICATIONS_DATABASE";
+    String strCHAT_DATABASE = "CHAT_DATABASE";
 
     // REQUEST TYPES
     String strREQUEST_TYPE = "REQUEST_TYPE";
@@ -64,4 +65,7 @@ public interface MyStringsConstant {
     String strLAST_SEEN = "last_seen";
     String strTRUE = "true";
     String strFALSE = "false";
+    String strSEEN = "seen";
+    String strTIME_STAMP = "time_stamp";
+
 }

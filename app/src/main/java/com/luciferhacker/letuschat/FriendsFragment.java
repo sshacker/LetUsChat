@@ -113,9 +113,11 @@ public class FriendsFragment extends Fragment implements MyStringsConstant{
                                         }
 
                                         else if (which == 1){
-                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
-                                            chatIntent.putExtra(strUSER_ID, listUserId);
-                                            startActivity(chatIntent);
+
+                                                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                                chatIntent.putExtra(strUSER_ID, listUserId);
+                                                startActivity(chatIntent);
+
                                         }
                                     }
                                 });
